@@ -24,3 +24,28 @@ function updateImage() {
 }
 
 fetchImages();
+
+async function fetchProducts() {
+    try {
+        const response = await fetch("http://localhost:5000/api/products");
+        const products = await response.json();
+
+        const productGrid = document.getElementById("product-grid");
+        productGrid.innerHTML = "";
+
+        products.forEach(product => {
+            const productElement = `
+                <div class="product">
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p class="price">${product.price}</p>
+                </div>
+            `;
+            productGrid.innerHTML += productElement;
+        });
+    } catch (error) {
+        console.error("Error fetching products:", error);
+    }
+}
+
+fetchProducts();
