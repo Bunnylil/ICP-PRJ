@@ -23,29 +23,37 @@ function updateImage() {
     }
 }
 
-fetchImages();
-
-async function fetchProducts() {
+// Fetch products from backend and display them
+async function fetchProducts(apiEndpoint, containerId) {
     try {
-        const response = await fetch("http://localhost:5000/api/products");
+        const response = await fetch(apiEndpoint);
         const products = await response.json();
 
-        const productGrid = document.getElementById("product-grid");
-        productGrid.innerHTML = "";
+        const productContainer = document.getElementById(containerId);
+        productContainer.innerHTML = ""; // Clear previous content
 
         products.forEach(product => {
-            const productElement = `
-                <div class="product">
-                    <img src="${product.image}" alt="${product.name}">
-                    <h3>${product.name}</h3>
-                    <p class="price">${product.price}</p>
-                </div>
+            const productDiv = document.createElement("div");
+            productDiv.classList.add("product");
+
+            productDiv.innerHTML = `
+                <a href="${product.link || product.page}">
+                    <img src="${product.image}" alt="${product.name}" width="150">
+                </a>
+                <h3>${product.name}</h3>
+                <p class="price">${product.price}</p>
             `;
-            productGrid.innerHTML += productElement;
+
+            productContainer.appendChild(productDiv);
         });
     } catch (error) {
         console.error("Error fetching products:", error);
     }
 }
 
-fetchProducts();
+// Initialize fetch functions
+fetchImages();
+fetchProducts("http://localhost:5000/api/products", "product-list");
+fetchProducts("http://localhost:5000/api/milk-products", "productGrid");
+
+
