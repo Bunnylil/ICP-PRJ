@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const bcrypt = require("bcrypt"); // Import bcrypt
 
 const app = express();
 app.use(cors());
@@ -41,9 +42,109 @@ const milkSchema = new mongoose.Schema({
 
 const Milk = mongoose.model("Milk", milkSchema, "milk_images");
 
+// User Schema and Model
+const userSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  username: { type: String, unique: true, sparse: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String }, // Optional for Google signup
+  googleId: { type: String, unique: true, sparse: true },
+  profilePicture: { type: String }, // Optional
+  signupMethod: { type: String, default: "email" },
+});
 
+const User = mongoose.model("User", userSchema);
 
-// API to fetch home thumbnails
+// Check if username exists
+app.get("/api/auth/check-username", async (req, res) => {
+  const { username } = req.query;
+
+  try {
+    const user = await User.findOne({ username });
+    res.json({ exists: !!user });
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// Check if email exists
+app.get("/api/auth/check-email", async (req, res) => {
+  const { email } = req.query;
+
+  try {
+    const user = await User.findOne({ email });
+    res.json({ exists: !!user });
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// Email Signup
+app.post("/api/auth/signup", async (req, res) => {
+  const { name, username, email, password } = req.body;
+
+  try {
+    const existingUsername = await User.findOne({ username });
+    const existingEmail = await User.findOne({ email });
+
+    if (existingUsername) {
+      return res.status(400).json({ error: "Username already exists" });
+    }
+
+    if (existingEmail) {
+      return res.status(400).json({ error: "Email already exists" });
+    }
+
+    // Hash the password
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+    // Create a new user
+    const user = new User({ name, username, email, password: hashedPassword });
+    await user.save();
+
+    res.status(201).json({ message: "User created successfully", user });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+// Google Signup
+app.post("/api/auth/google-signup", async (req, res) => {
+  const { googleId, name, email, profilePicture } = req.body;
+
+  try {
+    const existingUser = await User.findOne({ googleId });
+
+    if (existingUser) {
+      return res
+        .status(400)
+        .json({ error: "User already exists with this Google account." });
+    }
+
+    const existingEmail = await User.findOne({ email });
+    if (existingEmail) {
+      return res.status(400).json({ error: "Email already exists." });
+    }
+
+    const user = new User({
+      name,
+      email,
+      googleId,
+      profilePicture: profilePicture || "",
+      signupMethod: "google",
+    });
+
+    await user.save();
+
+    res.status(201).json({ message: "Google signup successful!", user });
+  } catch (error) {
+    console.error("Error during Google signup:", error);
+    res.status(500).json({ error: "Internal server error." });
+  }
+});
+
+// API Route to Get All Thumbnails
 app.get("/api/home-thumbnails", async (req, res) => {
   try {
     const thumbnails = await Thumbnail.find();
@@ -63,6 +164,7 @@ app.get("/api/products", async (req, res) => {
   }
 });
 
+// API Route to Get All Milk Products
 app.get("/api/milk-products", async (req, res) => {
   try {
     const products = await Milk.find();
@@ -72,7 +174,6 @@ app.get("/api/milk-products", async (req, res) => {
   }
 });
 
-
-
 // Start the server
-app.listen(5000, () => console.log("✅ Server running on port 5000"));
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
