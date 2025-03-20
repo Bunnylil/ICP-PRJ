@@ -22,7 +22,7 @@ if (googleButton) {
         try {
             const result = await signInWithPopup(auth, provider);
             alert("Sign-in successful with Google!");
-            window.location.href = "main.html";
+            window.location.href = "index.html";
         } catch (error) {
             alert(`Google Sign-In Error: ${error.message}`);
         }
