@@ -55,6 +55,31 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", userSchema);
 
+// Define Schema and Model
+const addressSchema = new mongoose.Schema({
+  name: String,
+  address: String,
+  region: String,
+  city: String,
+  contact: String
+});
+
+const Address = mongoose.model('Address', addressSchema);
+// API Endpoints
+// GET Route to Fetch Address
+app.get('/get-address', async (req, res) => {
+  try {
+      const address = await Address.findOne().sort({ _id: -1 }); // Fetch the latest address
+      if (address) {
+          res.status(200).json(address);
+      } else {
+          res.status(404).send('No address found');
+      }
+  } catch (error) {
+      res.status(500).send('Error fetching address');
+  }
+});
+
 // Check if username exists
 app.get("/api/auth/check-username", async (req, res) => {
   const { username } = req.query;
@@ -194,6 +219,18 @@ app.post("/signin", async (req, res) => {
   } catch (error) {
       console.error("Sign-In Error:", error);
       res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+// POST Route to Save Address
+app.post('/save-address', async (req, res) => {
+  try {
+      const { name, address, region, city, contact } = req.body;
+      const newAddress = new Address({ name, address, region, city, contact });
+      await newAddress.save();
+      res.status(201).send('Address saved successfully');
+  } catch (error) {
+      res.status(500).send('Error saving address');
   }
 });
 

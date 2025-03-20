@@ -467,3 +467,221 @@ body {
     font-size: 14px;
     color: #555;
 }
+
+.container3 {
+  background-color: #dad9db;
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.image-left,
+.image-right {
+  max-width: 200px;
+  height: auto;
+  flex-shrink: 0;
+  margin: 0 150px;
+}
+
+.text-content {
+  text-align: center;
+  margin: 0 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.text-content h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.text-content p {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  gap: 10px;
+  width: 100%;
+  max-width: 500px;
+  margin-top: 10px;
+}
+
+.email-icon {
+  font-size: 20px;
+  color: orange;
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+input[type="email"] {
+  padding: 10px 10px 10px 40px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  flex-grow: 1;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+  max-width: 100%;
+}
+
+input[type="email"]:focus {
+  border-color: orange;
+  outline: none;
+}
+
+.signup-text {
+  font-size: 16px;
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.signup-text:hover {
+  color: orange;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .image-left,
+  .image-right {
+    max-width: 120px;
+  }
+
+  .text-content {
+    margin: 20px 0;
+  }
+
+  .input-group {
+    width: 100%;
+    margin-top: 15px;
+  }
+
+  input[type="email"],
+  .signup-text {
+    font-size: 16px;
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: space-around;
+  background-color: #000;
+  color: white;
+  padding: 20px 0;
+  flex-wrap: wrap;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 200px;
+  padding: 0 20px;
+}
+
+.footer-section h1 {
+  font-size: 16px;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.footer-section a {
+  display: block;
+  color: #ccc;
+  text-decoration: none;
+  margin-bottom: 10px;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+  color: var(--highlight-color);
+  text-decoration: underline;
+}
+
+.horizontal-options {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-top: 15px;
+}
+
+.payment-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.payment-icons i {
+  font-size: 2rem;
+  color: white;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.payment-icons i:hover {
+  color: var(--highlight-color);
+  transform: scale(1.1);
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #ccc;
+  width: 100%;
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+.social-media {
+  margin-top: 20px;
+}
+
+.social-media h4 {
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 20px;
+}
+
+.social-icons a {
+  font-size: 20px;
+  color: #ccc;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: var(--highlight-color);
+  transform: scale(1.2);
+}
+
+#errorMessage {
+  margin-top: 10px;
+  font-size: 14px;
+}
