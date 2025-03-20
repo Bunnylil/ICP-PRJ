@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (response.ok) {
         alert("Sign up successful!");
-        window.location.href = "index.html";
+        window.location.href = "signin.html";
       } else {
         throw new Error(data.error || "Sign up failed. Please try again.");
       }
@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (response.ok) {
         alert("Sign-up successful with Google!");
-        window.location.href = "index.html";
+        window.location.href = "signin.html";
       } else {
         throw new Error(data.error || "Failed to sign up with Google.");
       }

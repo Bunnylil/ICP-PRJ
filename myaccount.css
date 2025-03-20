@@ -1,0 +1,454 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+}
+
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background-color: #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .navbar.scrolled {
+    background-color: #f8f7f2;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .logo {
+    margin-left: 20px;
+    position: relative;
+    top: 4.5px;
+  }
+  
+  .logo img {
+    height: 20px;
+  }
+  
+  .nav-links ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+  }
+  .nav-links ul li {
+    padding: 0 30px;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    font-size: 14px;
+    color: #2d2926;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+  }
+  
+  .nav-links a:hover {
+    color: orange;
+  }
+  
+  .nav-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-right: 20px;
+  }
+  
+  .nav-icons a {
+    font-size: 18px;
+    color: #363633;
+    transition: color 0.3s ease;
+    position: relative;
+  }
+  
+  .nav-icons a:hover {
+    color: orange;
+  }
+  
+  .nav-icons .hamburger:hover {
+    color: orange;
+  }
+  
+  .hamburger {
+    position: relative;
+    display: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: #363633;
+    transition: color 0.3s ease;
+  }
+  
+  .hamburger-menu {
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: #ffffff;
+    border: 1px solid #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+    z-index: 1000;
+    flex-direction: column;
+    gap: 10px;
+    width: 150px;
+  }
+  
+  .hamburger-menu a {
+    display: block;
+    padding: 10px 15px;
+    color: #2d2926;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+  }
+  
+  .hamburger-menu a:hover {
+    color: orange;
+    background-color: #f8f7f2;
+  }
+  
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+    }
+  
+    .hamburger {
+      display: block;
+    }
+  
+    .hamburger-menu.active {
+      display: flex;
+    }
+  }
+.container {
+    display: flex;
+    max-width: 1200px;
+    margin: 20px auto;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+}
+.sidebar {
+    width: 250px;
+    background: black;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+}
+.sidebar h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: white; 
+}
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+.sidebar ul li {
+    padding: 10px 0;
+    border-bottom: 1px solid #efefeb;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s;
+    color: white; 
+}
+.sidebar ul li:hover {
+    color: orange;
+}
+.sidebar ul li i {
+    margin-right: 10px;
+    color: white; 
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+}
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+.overview-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+section {
+    background: #fff;
+    padding: 15px;
+    position: relative;
+    border: 1px solid #ddd; 
+    border-radius: 5px; 
+}
+
+h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+}
+
+a {
+    color: orange;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.edit-icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: orange;
+    cursor: pointer;
+}
+
+.container2 {
+    width: 78%;
+    margin: auto;
+    margin-top: 100px;
+}
+.header2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.products {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
+    padding-bottom: 10px;
+}
+.product {
+    width: 150px;
+    flex: 0 0 auto;
+    border-radius: 8px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    position: relative;
+}
+.product img {
+    width: 100%;
+    border-radius: 5px;
+}
+.discount {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: rgba(255, 153, 0, 0.9);
+    color: white;
+    padding: 3px 6px;
+    font-size: 12px;
+    border-radius: 4px;
+}
+.price {
+    font-weight: bold;
+    margin: 5px 0;
+}
+.old-price {
+    text-decoration: line-through;
+    color: gray;
+    font-size: 14px;
+}
+
+.container3 {
+    width: 78%;
+    margin: auto;
+    margin-top: 50px;
+}
+.header3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.products {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
+    padding-bottom: 10px;
+}
+.product {
+    width: 150px;
+    flex: 0 0 auto;
+    border-radius: 8px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    position: relative;
+}
+.product img {
+    width: 100%;
+    border-radius: 5px;
+}
+.discount {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: rgba(255, 153, 0, 0.9);
+    color: white;
+    padding: 3px 6px;
+    font-size: 12px;
+    border-radius: 4px;
+}
+.price {
+    font-weight: bold;
+    margin: 5px 0;
+}
+.old-price {
+    text-decoration: line-through;
+    color: gray;
+    font-size: 14px;
+}
+
+.container4 {
+    background-color: #dad9db;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 100px;
+  }
+  
+  .image-left,
+  .image-right {
+    max-width: 200px;
+    height: auto;
+    flex-shrink: 0;
+    margin: 0 150px;
+  }
+  
+  .text-content {
+    text-align: center;
+    margin: 0 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .text-content h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .text-content p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 15px;
+  }
+  
+  .input-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    gap: 10px;
+    width: 100%;
+    max-width: 500px;
+    margin-top: 10px;
+  }
+  
+  .email-icon {
+    font-size: 20px;
+    color: orange;
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  input[type="email"] {
+    padding: 10px 10px 10px 40px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    flex-grow: 1;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+    max-width: 100%;
+  }
+  
+  input[type="email"]:focus {
+    border-color: orange;
+    outline: none;
+  }
+  
+  .signup-text {
+    font-size: 16px;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .signup-text:hover {
+    color: orange;
+}
+
+@media (max-width: 768px) {
+    .container4 {
+        padding: 20px;
+        margin-top: 50px;
+        flex-direction: column; /* Stack items vertically */
+    }
+
+    .image-left,
+    .image-right {
+        margin: 20px 0; /* Adjust margin for stacked layout */
+        max-width: 150px; /* Reduce image size for smaller screens */
+    }
+
+    .text-content {
+        margin: 20px 0;
+    }
+
+    .input-group {
+        max-width: 100%; /* Allow input to take full width */
+    }
+
+
+}
+
+@media (max-width: 480px) {
+    .text-content h2 {
+        font-size: 20px; /* Reduce heading size */
+    }
+
+    .text-content p {
+        font-size: 14px; /* Reduce paragraph text size */
+    }
+
+    input[type="email"] {
+        padding: 8px 8px 8px 35px; /* Adjust padding */
+        font-size: 12px; /* Reduce font size */
+    }
+
+    .email-icon {
+        font-size: 16px; /* Reduce icon size */
+        left: 8px; /* Adjust position */
+    }
+
+    .signup-text {
+        font-size: 14px; /* Reduce text size */
+    }
+}
+
