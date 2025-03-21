@@ -1,34 +1,42 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const bcrypt = require("bcrypt"); // Import bcrypt
+const bcrypt = require("bcrypt"); 
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 // MongoDB connection
-mongoose.connect("mongodb+srv://buruklynx:1gliU3JyND0sQoKS@3legant-project.ybsdj.mongodb.net/", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log("✅ Connected to MongoDB"))
-.catch(err => console.error("❌ Failed to connect to MongoDB", err));
+mongoose
+  .connect(
+    "mongodb+srv://buruklynx:1gliU3JyND0sQoKS@3legant-project.ybsdj.mongodb.net/",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
+  .then(() => console.log("✅ Connected to MongoDB"))
+  .catch((err) => console.error("❌ Failed to connect to MongoDB", err));
 
 // Thumbnail Schema & Model
 const thumbnailSchema = new mongoose.Schema({
   name: String,
-  imageUrl: String, // URL of the image
+  imageUrl: String, 
 });
 
-const Thumbnail = mongoose.model("Thumbnail", thumbnailSchema, "thumbnailHomeImages");
+const Thumbnail = mongoose.model(
+  "Thumbnail",
+  thumbnailSchema,
+  "thumbnailHomeImages"
+);
 
 // Create Product Schema
 const productSchema = new mongoose.Schema({
   image: String,
   name: String,
   price: String,
-  page: String
+  page: String,
 });
 
 const Product = mongoose.model("Product", productSchema, "home_images");
@@ -61,22 +69,22 @@ const addressSchema = new mongoose.Schema({
   address: String,
   region: String,
   city: String,
-  contact: String
+  contact: String,
 });
 
-const Address = mongoose.model('Address', addressSchema);
+const Address = mongoose.model("Address", addressSchema);
 // API Endpoints
 // GET Route to Fetch Address
-app.get('/get-address', async (req, res) => {
+app.get("/get-address", async (req, res) => {
   try {
-      const address = await Address.findOne().sort({ _id: -1 }); // Fetch the latest address
-      if (address) {
-          res.status(200).json(address);
-      } else {
-          res.status(404).send('No address found');
-      }
+    const address = await Address.findOne().sort({ _id: -1 }); 
+    if (address) {
+      res.status(200).json(address);
+    } else {
+      res.status(404).send("No address found");
+    }
   } catch (error) {
-      res.status(500).send('Error fetching address');
+    res.status(500).send("Error fetching address");
   }
 });
 
@@ -203,34 +211,34 @@ app.post("/signin", async (req, res) => {
   const { email, password } = req.body;
 
   try {
-      const user = await User.findOne({ email });
+    const user = await User.findOne({ email });
 
-      if (!user) {
-          return res.status(400).json({ message: "User not found" });
-      }
+    if (!user) {
+      return res.status(400).json({ message: "User not found" });
+    }
 
-      const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = await bcrypt.compare(password, user.password);
 
-      if (!isMatch) {
-          return res.status(400).json({ message: "Invalid credentials" });
-      }
+    if (!isMatch) {
+      return res.status(400).json({ message: "Invalid credentials" });
+    }
 
-      res.json({ message: "Sign-in successful", user });
+    res.json({ message: "Sign-in successful", user });
   } catch (error) {
-      console.error("Sign-In Error:", error);
-      res.status(500).json({ message: "Internal server error" });
+    console.error("Sign-In Error:", error);
+    res.status(500).json({ message: "Internal server error" });
   }
 });
 
 // POST Route to Save Address
-app.post('/save-address', async (req, res) => {
+app.post("/save-address", async (req, res) => {
   try {
-      const { name, address, region, city, contact } = req.body;
-      const newAddress = new Address({ name, address, region, city, contact });
-      await newAddress.save();
-      res.status(201).send('Address saved successfully');
+    const { name, address, region, city, contact } = req.body;
+    const newAddress = new Address({ name, address, region, city, contact });
+    await newAddress.save();
+    res.status(201).send("Address saved successfully");
   } catch (error) {
-      res.status(500).send('Error saving address');
+    res.status(500).send("Error saving address");
   }
 });
 

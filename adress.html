@@ -1,47 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>3legant - Address Form</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="adress.css">
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="adress.css" />
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
     <script src="adress.js" defer type="module"></script>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <!-- Left Section (Logo and Image Slider) -->
-        <div class="left">
-            <div class="logo-container">
-                <div class="logo">3legant.</div>
-                <img id="dynamicImage" src="images/a (1).png" alt="Elegant Chair">
-            </div>
+      <!-- Left Section (Logo and Image Slider) -->
+      <div class="left">
+        <div class="logo-container">
+          <div class="logo">3legant.</div>
+          <img id="dynamicImage" src="images/a (1).png" alt="Elegant Chair" />
         </div>
+      </div>
 
-        <!-- Right Section (Address Form) -->
-        <div class="right">
-            <div class="form-container">
-                <h2>Address</h2>
-                
-                <label for="nameInput">Your Name</label>
-                <input type="text" id="nameInput" placeholder="Enter your name" required>
+      <!-- Right Section (Address Form) -->
+      <div class="right">
+        <div class="form-container">
+          <h2>Address</h2>
 
-                <label for="adress">Address</label>
-                <input type="text" id="adress" placeholder="Enter your address" required>
+          <label for="nameInput">Your Name</label>
+          <input
+            type="text"
+            id="nameInput"
+            placeholder="Enter your name"
+            required
+          />
 
-                <label for="RegionInput">Region</label>
-                <input type="text" id="RegionInput" placeholder="Enter your region" required>
+          <label for="adress">Address</label>
+          <input
+            type="text"
+            id="adress"
+            placeholder="Enter your address"
+            required
+          />
 
-                <label for="CityInput">City</label>
-                <input type="text" id="CityInput" placeholder="Enter your city" required>
+          <label for="RegionInput">Region</label>
+          <input
+            type="text"
+            id="RegionInput"
+            placeholder="Enter your region"
+            required
+          />
 
-                <label for="ContactInput">Contact</label>
-                <input type="tel" id="ContactInput" placeholder="Enter your contact number" required>
-                
-                <button id="SaveButton">Save</button>
-            </div>
+          <label for="CityInput">City</label>
+          <input
+            type="text"
+            id="CityInput"
+            placeholder="Enter your city"
+            required
+          />
+
+          <label for="ContactInput">Contact</label>
+          <input
+            type="tel"
+            id="ContactInput"
+            placeholder="Enter your contact number"
+            required
+          />
+
+          <button id="SaveButton">Save</button>
         </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
